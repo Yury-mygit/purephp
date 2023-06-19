@@ -1,0 +1,35 @@
+version: '3'
+services:
+  php: 
+    build: 
+      dockerfile: docker/php.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    restart: unless-stopped
+    # ports:
+    #   - "9000:9000"
+    volumes:
+      - ./server:/var/www/html:delegated
+    depends_on:
+      - webserver   
+    networks:
+      - laravel
+
+  webserver:
+    build: 
+      dockerfile: ./docker/nginx.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./server:/var/www/html:delegated
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    driver: bridge
