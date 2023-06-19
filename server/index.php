@@ -3,7 +3,7 @@
 $request_method = $_SERVER['REQUEST_METHOD'];
 $request_uri = $_SERVER['REQUEST_URI'];
 
-die(var_dump($request_uri));
+// die(var_dump($request_uri));
 
 // Проверяем, является ли запрос методом POST
 if ($request_method === 'POST') {
