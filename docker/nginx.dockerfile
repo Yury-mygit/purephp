@@ -9,5 +9,6 @@ ENV GID=${GID}
 ADD ./docker/nginx/default.conf /etc/nginx/conf.d/
 
 WORKDIR /var/www/html
+COPY ./server /var/www/html/
 
-RUN mkdir -p /var/www/html
+# RUN mkdir -p /var/www/html
